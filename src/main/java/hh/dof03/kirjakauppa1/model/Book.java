@@ -1,4 +1,4 @@
-package hh.dof03.kirjakauppa1.BookController;
+package hh.dof03.kirjakauppa1.model;
 
 public class Book {
     private String title;
