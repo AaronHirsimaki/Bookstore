@@ -23,7 +23,10 @@ xmlns:th="http://www.thymeleaf.org">
 	<td th:text="${book.year}"></td>
 	<td th:text="${book.isbn}"></td>
 	<td th:text="${book.price}"></td>
+	<td><a th:href="@{'/deletebook/' + ${book.bookId}}">Delete Book</a></td>
+	<td><a th:href="@{'/editbook/' + ${book.bookId}}">Edit Book</a></td>
 </tr>
 </table>
+<a th:href="@{/addbook}">Add Book</a>
 </body>
 </html>
