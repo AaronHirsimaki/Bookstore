@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import hh.dof03.kirjakauppa1.model.Book;
 import hh.dof03.kirjakauppa1.repository.BookRepository;
+import hh.dof03.kirjakauppa1.repository.CategoryRepository;
 
 @Controller
 public class BookController {
@@ -21,6 +22,7 @@ public class BookController {
     public String doAddBook(Model model) {
     	Book book = new Book();
     	model.addAttribute("book", book);
+    	model.addAttribute("categorylist",categoryRepository.findAll());
         return "addBook";
     }
     
@@ -42,6 +44,7 @@ public class BookController {
     @GetMapping("/editbook/{id}")
     public String editBookById(@PathVariable String id, Model model) {
     	Book editBook = bookRepository.findById(Integer.parseInt(id));
+    	model.addAttribute("categorylist",categoryRepository.findAll());
     	model.addAttribute("book",editBook);
     	return "editBook";
     }
@@ -55,6 +58,9 @@ public class BookController {
 	
 	@Autowired
 	BookRepository bookRepository;
+	
+	@Autowired
+	CategoryRepository categoryRepository;
 
     @RequestMapping("/")
     public String sayHello() {
@@ -68,8 +74,6 @@ public class BookController {
 
     @GetMapping("/booklist")
     public String doBooklist(Model model) {
-    	//Iterable<Book> booklist = repository.findAll();
-    	
     	model.addAttribute("booklist",bookRepository.findAll());
         return "booklist";
     }

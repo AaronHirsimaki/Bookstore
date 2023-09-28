@@ -7,8 +7,8 @@
 </head>
 <body>
 	 <form action="#" th:action="@{/addbook}" method="post" th:object="${book}">
+        
         <label>Book title:</label>
- 
         <input type="text" th:field="*{title}" /><br/>
  
         <label>Author:</label>
@@ -22,6 +22,11 @@
  
         <label>Price:</label>
         <input type="text" th:field="*{price}" /><br/>
+        
+        <select th:field="*{category}">
+    	<option th:each="i : ${categorylist}" th:value="${i.categoryId}" th:text="${i.categoryName}">
+    	</option>
+		</select>
 
  
         <button type="submit">Save</button>    
