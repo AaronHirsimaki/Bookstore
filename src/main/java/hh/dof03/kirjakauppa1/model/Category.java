@@ -2,7 +2,9 @@ package hh.dof03.kirjakauppa1.model;
 
 import java.util.List;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.CascadeType;
+
 
 @Entity
 public class Category {
@@ -23,7 +26,10 @@ public class Category {
 	private String categoryName;
 	private String book;
 	
+	@JsonManagedReference
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
+	//@JsonIgnoreProperties("category")
+	//@JsonIgnore
 	private List<Book> books;
 	
 
