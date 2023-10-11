@@ -1,6 +1,7 @@
 package hh.dof03.kirjakauppa1.BookController;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,6 +42,7 @@ public class BookController {
     	return "booklist";
     }
     
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/deletebook/{id}")
     public String deleteBookById(@PathVariable String id, Model model) {
     	Book deleteBook = bookRepository.findById(Integer.parseInt(id));
@@ -49,6 +51,8 @@ public class BookController {
     	return "booklist";
     }
     
+    
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/editbook/{id}")
     public String editBookById(@PathVariable String id, Model model) {
     	Book editBook = bookRepository.findById(Integer.parseInt(id));
@@ -57,6 +61,8 @@ public class BookController {
     	return "editBook";
     }
     
+    
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/editbook")
     public String doPostEditBook(Model model, @ModelAttribute("book") Book book) {
     	bookRepository.save(book);
