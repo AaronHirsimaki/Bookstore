@@ -20,6 +20,11 @@ import hh.dof03.kirjakauppa1.repository.CategoryRepository;
 @Controller
 public class BookController {
 	
+	@GetMapping("/login")
+	public String login() {
+		return "login";
+	}
+	
 	
     @GetMapping("/addbook")
     public String doAddBook(Model model) {
